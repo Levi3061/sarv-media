@@ -36,27 +36,27 @@ const Footer = () => {
             <ul className="space-y-3">
               <li>
                 <Link to="/work" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Cloud Solutions
+                  iOS App Development
                 </Link>
               </li>
               <li>
                 <Link to="/work" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Custom Software
+                  Android App Development
                 </Link>
               </li>
               <li>
                 <Link to="/work" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  IT Consulting
+                  SEO & Content Marketing
                 </Link>
               </li>
               <li>
                 <Link to="/work" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Cybersecurity
+                  UI/UX Design
                 </Link>
               </li>
               <li>
                 <Link to="/work" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  IT Support
+                  Website Development
                 </Link>
               </li>
             </ul>
@@ -105,14 +105,32 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-primary-foreground/70" />
-                <a href="tel:+14155552671" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  (415) 555-2671
+                <a href="tel:+12499892347" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  (249) 989-2347
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Phone size={20} className="text-primary-foreground/70" />
+                <a href="tel:+14375996550" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  (437) 599-6550
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-primary-foreground/70" />
                 <a href="mailto:info@techedge.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                   info@techedge.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Instagram size={20} className="text-primary-foreground/70" />
+                <a href="https://instagram.com/techedge" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  @techedge
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Linkedin size={20} className="text-primary-foreground/70" />
+                <a href="https://linkedin.com/company/techedge" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  TechEdge IT Services
                 </a>
               </li>
             </ul>

@@ -31,7 +31,7 @@ const Navbar = () => {
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between">
           <NavLink to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold tracking-tight text-gradient">TechEdge</span>
+            <span className="text-2xl font-bold tracking-tight text-gradient">Sarvmedia</span>
           </NavLink>
 
           {/* Desktop Navigation */}

@@ -59,14 +59,10 @@ const About = () => {
               >
                 <h2 className="text-3xl font-bold mb-6">Our Story</h2>
                 <p className="text-muted-foreground mb-4">
-                  Founded in 2010, TechEdge has grown from a small IT consulting firm 
-                  to a comprehensive technology solutions provider serving businesses 
-                  across multiple industries.
+                  We're a fun-loving crew of web designers, digital marketers, and SEO nerds on a mission to help your brand dominate online. 
                 </p>
                 <p className="text-muted-foreground">
-                  Our journey has been driven by a singular mission: to help businesses 
-                  leverage technology to achieve their goals and stay ahead in an 
-                  increasingly digital world.
+                  When we're not geeking out over the latest app or marketing hack, we're probably swapping memes and debating whether pineapple belongs on pizza (it does, don't @ us).
                 </p>
               </motion.div>
               
@@ -93,7 +89,7 @@ const About = () => {
           </div>
         </section>
 
-        {/* Values Section */}
+        {/* Why Us Section */}
         <section className="py-20">
           <div className="container mx-auto px-6 md:px-8">
             <div className="max-w-3xl mx-auto text-center mb-16">
@@ -104,7 +100,7 @@ const About = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                Our Core Values
+                Why Us
               </motion.h2>
               <motion.p 
                 className="text-muted-foreground"
@@ -113,31 +109,31 @@ const About = () => {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                These principles guide everything we do and shape how we serve our clients.
+                What makes us different from the rest
               </motion.p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {[
                 {
-                  icon: Users,
-                  title: "Client Focus",
-                  description: "We put our clients first and work to understand their unique needs and challenges."
+                  icon: Blocks,
+                  title: "100% Custom Creations",
+                  description: "No copy-and-paste templates here. Your project is one-of-a-kind—just like you."
                 },
                 {
-                  icon: Award,
-                  title: "Excellence",
-                  description: "We strive for excellence in every project and service we deliver."
+                  icon: Users,
+                  title: "We Speak Human, Not Just Tech",
+                  description: "Tired of confusing jargon? We translate code into plain English (or emojis, if that's your thing)."
                 },
                 {
                   icon: Target,
-                  title: "Innovation",
-                  description: "We embrace new technologies and innovative solutions to solve complex problems."
+                  title: "Results-Driven",
+                  description: "Likes, follows, and brand awareness are great—but real ROI is where it's at."
                 },
                 {
-                  icon: Blocks,
-                  title: "Integrity",
-                  description: "We conduct our business with the highest standards of professional integrity."
+                  icon: Award,
+                  title: "Friendly & Fun",
+                  description: "We might be keyboard ninjas, but we're also people-people. Expect top-notch support and the occasional dad joke."
                 }
               ].map((value, index) => (
                 <motion.div

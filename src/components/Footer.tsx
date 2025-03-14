@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -10,25 +10,11 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold tracking-tight">TechEdge</span>
+              <span className="text-2xl font-bold tracking-tight">Sarvmedia</span>
             </Link>
             <p className="text-primary-foreground/80 mb-6">
               Empowering businesses with innovative IT solutions since 2010.
             </p>
-            <div className="flex space-x-4">
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                <Facebook size={20} />
-              </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                <Twitter size={20} />
-              </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                <Linkedin size={20} />
-              </a>
-              <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                <Instagram size={20} />
-              </a>
-            </div>
           </div>
           
           <div>
@@ -80,29 +66,12 @@ const Footer = () => {
                   Contact
                 </Link>
               </li>
-              <li>
-                <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  Privacy Policy
-                </a>
-              </li>
             </ul>
           </div>
           
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact</h3>
             <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin size={20} className="text-primary-foreground/70 mt-1" />
-                <span className="text-primary-foreground/70">
-                  123 Tech Street, Suite 456<br />
-                  San Francisco, CA 94103
-                </span>
-              </li>
               <li className="flex items-center gap-3">
                 <Phone size={20} className="text-primary-foreground/70" />
                 <a href="tel:+12499892347" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
@@ -117,20 +86,8 @@ const Footer = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={20} className="text-primary-foreground/70" />
-                <a href="mailto:info@techedge.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  info@techedge.com
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Instagram size={20} className="text-primary-foreground/70" />
-                <a href="https://instagram.com/techedge" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  @techedge
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Linkedin size={20} className="text-primary-foreground/70" />
-                <a href="https://linkedin.com/company/techedge" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
-                  TechEdge IT Services
+                <a href="mailto:info@sarvmedia.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
+                  info@sarvmedia.com
                 </a>
               </li>
             </ul>
@@ -139,7 +96,7 @@ const Footer = () => {
         
         <div className="border-t border-primary-foreground/10 pt-8">
           <p className="text-primary-foreground/60 text-sm text-center">
-            © {new Date().getFullYear()} TechEdge IT Services. All rights reserved.
+            © {new Date().getFullYear()} Sarv Media. All rights reserved.
           </p>
         </div>
       </div>

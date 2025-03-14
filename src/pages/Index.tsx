@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/Hero';
@@ -8,6 +7,7 @@ import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PageTransition from '@/layout/PageTransition';
 import ServiceCard from '@/components/ServiceCard';
+import HomeContactForm from '@/components/HomeContactForm';
 
 const Index = () => {
   const services = [
@@ -227,6 +227,34 @@ const Index = () => {
                 </Link>
               </motion.div>
             </div>
+          </div>
+        </section>
+
+        {/* Contact Form Section */}
+        <section className="py-24">
+          <div className="container mx-auto px-6 md:px-8">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <motion.h2 
+                className="text-3xl md:text-4xl font-bold mb-6"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Get in Touch
+              </motion.h2>
+              <motion.p 
+                className="text-muted-foreground text-lg"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                viewport={{ once: true }}
+              >
+                Have questions or ready to start a project? Send us a message and we'll get back to you shortly.
+              </motion.p>
+            </div>
+            
+            <HomeContactForm />
           </div>
         </section>
       </main>

@@ -18,6 +18,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
+import { supabase } from "@/integrations/supabase/client";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -62,19 +63,47 @@ const HomeContactForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof formSchema>) {
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Submit form data to Supabase
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: values.name,
+            email: values.email,
+            phone: values.phone || null,
+            service: values.service,
+            message: values.message
+          }
+        ]);
+      
+      if (error) {
+        console.error('Error submitting form:', error);
+        toast({
+          title: "Something went wrong",
+          description: "Your message could not be sent. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        form.reset();
+      }
+    } catch (err) {
+      console.error('Exception:', err);
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you as soon as possible.",
+        title: "Something went wrong",
+        description: "Your message could not be sent. Please try again.",
+        variant: "destructive",
       });
-      form.reset();
-    }, 1000);
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (

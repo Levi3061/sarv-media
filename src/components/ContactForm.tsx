@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
+import { supabase } from "@/integrations/supabase/client";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -18,24 +19,53 @@ const ContactForm = () => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Submit form data to Supabase
+      const { error } = await supabase
+        .from('contact_submissions')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            phone: formData.phone || null,
+            service: "Not Specified", // This form doesn't have a service field
+            message: formData.message
+          }
+        ]);
+      
+      if (error) {
+        console.error('Error submitting form:', error);
+        toast({
+          title: "Something went wrong",
+          description: "Your message could not be sent. Please try again.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Message sent successfully!",
+          description: "We'll get back to you as soon as possible.",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+      }
+    } catch (err) {
+      console.error('Exception:', err);
       toast({
-        title: "Message sent successfully!",
-        description: "We'll get back to you as soon as possible.",
+        title: "Something went wrong",
+        description: "Your message could not be sent. Please try again.",
+        variant: "destructive",
       });
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
-      });
-    }, 1000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

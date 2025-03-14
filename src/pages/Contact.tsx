@@ -6,6 +6,7 @@ import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PageTransition from '@/layout/PageTransition';
+import { Button } from '@/components/ui/button';
 
 const Contact = () => {
   return (
@@ -60,7 +61,17 @@ const Contact = () => {
                 {
                   icon: Phone,
                   title: "Call Us",
-                  details: ["(249) 989-2347", "(437) 599-6550"]
+                  details: ["(249) 989-2347", "(437) 599-6550"],
+                  actions: [
+                    { 
+                      label: "Call First Number", 
+                      href: "tel:+12499892347" 
+                    },
+                    { 
+                      label: "Call Second Number", 
+                      href: "tel:+14375996550" 
+                    }
+                  ]
                 },
                 {
                   icon: Mail,
@@ -81,10 +92,29 @@ const Contact = () => {
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{item.title}</h3>
                   {item.details.map((detail, i) => (
-                    <p key={i} className="text-muted-foreground">
+                    <p key={i} className="text-muted-foreground mb-2">
                       {detail}
                     </p>
                   ))}
+                  
+                  {item.actions && (
+                    <div className="mt-4 space-y-2">
+                      {item.actions.map((action, i) => (
+                        <Button 
+                          key={i} 
+                          variant="outline" 
+                          size="sm" 
+                          className="w-full"
+                          asChild
+                        >
+                          <a href={action.href}>
+                            <Phone className="mr-2" size={16} />
+                            {action.label}
+                          </a>
+                        </Button>
+                      ))}
+                    </div>
+                  )}
                 </motion.div>
               ))}
             </div>

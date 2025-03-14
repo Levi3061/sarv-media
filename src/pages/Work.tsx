@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code, Server, Database, Shield, Cpu, Wifi, HardDrive, Users, Clock } from 'lucide-react';
+import { Smartphone, AppWindow, TrendingUp, Search, Mail, Palette, LayoutTemplate, PenTool, Globe, Terminal, Code, AtSign, Image } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -9,50 +9,77 @@ import PageTransition from '@/layout/PageTransition';
 
 const Work = () => {
   const services = [
+    // App Development
+    {
+      icon: Smartphone,
+      title: "iOS App Development",
+      description: "We build native iOS applications that are tailored to your business needs, with stunning UIs and seamless functionality."
+    },
+    {
+      icon: AppWindow,
+      title: "Android App Development",
+      description: "Create high-performance Android applications designed for the modern user with smooth performance and engaging experiences."
+    },
+    {
+      icon: Terminal,
+      title: "Cross-Platform Development",
+      description: "Leverage technologies like React Native and Flutter to build apps that work seamlessly across multiple platforms."
+    },
+    
+    // Digital Marketing
+    {
+      icon: TrendingUp,
+      title: "Social Media Marketing",
+      description: "Strategic social media campaigns that engage your audience, build brand awareness, and drive conversions."
+    },
+    {
+      icon: Search,
+      title: "SEO & Content Marketing",
+      description: "Optimize your online presence to rank higher in search engines and attract qualified leads with targeted content."
+    },
+    {
+      icon: Mail,
+      title: "Email Marketing",
+      description: "Create personalized email campaigns that nurture leads, drive conversions, and build long-term customer loyalty."
+    },
+    {
+      icon: AtSign,
+      title: "Paid Advertising",
+      description: "Targeted PPC campaigns on Google, Facebook, Instagram, and LinkedIn to maximize your ROI and reach your ideal customers."
+    },
+    
+    // UI/UX Design
+    {
+      icon: Palette,
+      title: "UI/UX Design",
+      description: "User-centered design that creates intuitive, accessible, and enjoyable experiences for your customers."
+    },
+    {
+      icon: LayoutTemplate,
+      title: "Website & App Design",
+      description: "Visually stunning and functional designs for websites and applications that engage users and drive conversions."
+    },
+    {
+      icon: PenTool,
+      title: "Logo & Brand Identity",
+      description: "Distinctive visual identities that communicate your brand values and create a lasting impression."
+    },
+    {
+      icon: Image,
+      title: "Figma Design",
+      description: "Professional Figma designs with interactive prototypes that streamline the development process."
+    },
+    
+    // Website Development
+    {
+      icon: Globe,
+      title: "Custom Website Development",
+      description: "Tailor-made, responsive websites that reflect your brand and drive business results."
+    },
     {
       icon: Code,
-      title: "Custom Development",
-      description: "We build tailored software solutions that automate processes, improve efficiency, and drive business growth."
-    },
-    {
-      icon: Server,
-      title: "Cloud Services",
-      description: "Secure and scalable cloud infrastructure solutions to help you migrate, manage, and optimize your applications."
-    },
-    {
-      icon: Database,
-      title: "Data Management",
-      description: "Comprehensive data solutions including storage, analytics, and business intelligence for informed decision-making."
-    },
-    {
-      icon: Shield,
-      title: "Cybersecurity",
-      description: "Advanced security measures to protect your digital assets from threats and ensure business continuity."
-    },
-    {
-      icon: Cpu,
-      title: "IT Infrastructure",
-      description: "End-to-end infrastructure solutions designed to support your organization's growth and innovation."
-    },
-    {
-      icon: Wifi,
-      title: "Network Solutions",
-      description: "Reliable and secure networking solutions to keep your business connected and productive."
-    },
-    {
-      icon: HardDrive,
-      title: "Backup & Recovery",
-      description: "Robust backup solutions and disaster recovery planning to protect your critical business data."
-    },
-    {
-      icon: Users,
-      title: "IT Consulting",
-      description: "Strategic technology consulting to help you make informed decisions and maximize ROI."
-    },
-    {
-      icon: Clock,
-      title: "24/7 Support",
-      description: "Round-the-clock technical support and monitoring to ensure your systems run smoothly."
+      title: "E-commerce Solutions",
+      description: "Secure, scalable online stores that provide seamless shopping experiences and boost your sales."
     }
   ];
 
@@ -80,7 +107,7 @@ const Work = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1, duration: 0.5 }}
               >
-                Comprehensive IT Solutions for Modern Businesses
+                Comprehensive Digital Solutions for Modern Businesses
               </motion.h1>
               
               <motion.p 
@@ -89,7 +116,7 @@ const Work = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                From cloud infrastructure to cybersecurity, we provide end-to-end solutions 
+                From mobile apps to digital marketing, we provide end-to-end solutions 
                 that help businesses thrive in the digital age.
               </motion.p>
             </div>

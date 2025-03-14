@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { ArrowRight, Server, Shield, Code } from 'lucide-react';
+import { ArrowRight, Smartphone, TrendingUp, PenTool, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -40,15 +40,15 @@ const Hero = () => {
             className="px-4 py-1.5 bg-accent/10 text-accent text-xs font-medium rounded-full mb-6"
             variants={itemVariants}
           >
-            IT Services for the Modern Enterprise
+            Digital Solutions for Modern Businesses
           </motion.span>
 
           <motion.h1 
             className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6"
             variants={itemVariants}
           >
-            Transform your business with{' '}
-            <span className="text-gradient">powerful IT solutions</span>
+            We Build Websites That Don't Just Sit There—They Actually{' '}
+            <span className="text-gradient">Kick Your Business into High Gear!</span>
           </motion.h1>
 
           <motion.p 
@@ -80,38 +80,48 @@ const Hero = () => {
         </motion.div>
 
         <motion.div 
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-24"
+          className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-24"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
-              <Server size={24} />
+              <Smartphone size={24} />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Cloud Infrastructure</h3>
+            <h3 className="text-xl font-semibold mb-3">App Development</h3>
             <p className="text-muted-foreground">
-              Scalable, secure, and reliable cloud solutions tailored to your business needs.
+              Native iOS and Android applications built for performance and user experience.
             </p>
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
-              <Code size={24} />
+              <TrendingUp size={24} />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Custom Software</h3>
+            <h3 className="text-xl font-semibold mb-3">Digital Marketing</h3>
             <p className="text-muted-foreground">
-              Bespoke applications designed to solve your unique business challenges.
+              Social media, SEO, paid ads, and email campaigns to grow your business.
             </p>
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
             <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
-              <Shield size={24} />
+              <PenTool size={24} />
             </div>
-            <h3 className="text-xl font-semibold mb-3">Cybersecurity</h3>
+            <h3 className="text-xl font-semibold mb-3">UI/UX Design</h3>
             <p className="text-muted-foreground">
-              Comprehensive security solutions to protect your digital assets and data.
+              Stunning designs for websites, apps, logos, and brand identity.
+            </p>
+          </div>
+          
+          <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
+              <Globe size={24} />
+            </div>
+            <h3 className="text-xl font-semibold mb-3">Website Development</h3>
+            <p className="text-muted-foreground">
+              Custom websites that are fast, responsive, and optimized for conversion.
             </p>
           </div>
         </motion.div>

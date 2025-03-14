@@ -2,13 +2,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/Hero';
-import { ArrowRight, Users, Clock, Award, Code, Server, Database, Shield, Cpu, Wifi, HardDrive } from 'lucide-react';
+import { ArrowRight, Users, Clock, Award, Smartphone, Globe, PenTool, TrendingUp, Code, Search, Mail, AtSign, Image, Palette, AppWindow, Terminal, LayoutTemplate } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PageTransition from '@/layout/PageTransition';
+import ServiceCard from '@/components/ServiceCard';
 
 const Index = () => {
+  const services = [
+    // App Development
+    { 
+      icon: Smartphone, 
+      title: "iOS App Development", 
+      desc: "Native iOS applications with stunning UIs and seamless functionality" 
+    },
+    { 
+      icon: AppWindow, 
+      title: "Android App Development", 
+      desc: "High-performance Android apps designed for the modern user" 
+    },
+    
+    // Digital Marketing
+    { 
+      icon: TrendingUp, 
+      title: "Social Media Marketing", 
+      desc: "Strategic social media campaigns that engage and convert" 
+    },
+    { 
+      icon: Search, 
+      title: "SEO & Content Marketing", 
+      desc: "Rank higher in search engines with optimized content strategies" 
+    },
+    { 
+      icon: Mail, 
+      title: "Email Marketing", 
+      desc: "Targeted email campaigns that drive conversions and build loyalty" 
+    },
+    
+    // UI/UX Design
+    { 
+      icon: Palette, 
+      title: "UI/UX Design", 
+      desc: "User-centered designs that delight and engage your audience" 
+    },
+    { 
+      icon: LayoutTemplate, 
+      title: "Website & App Design", 
+      desc: "Stunning visuals and intuitive interfaces for web and mobile" 
+    },
+    { 
+      icon: PenTool, 
+      title: "Brand & Logo Design", 
+      desc: "Distinctive visual identities that set your brand apart" 
+    },
+    
+    // Website Development
+    { 
+      icon: Globe, 
+      title: "Website Development", 
+      desc: "Custom, responsive websites that drive business results" 
+    },
+  ];
+
   return (
     <PageTransition>
       <Navbar />
@@ -107,7 +163,7 @@ const Index = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                Comprehensive IT Services
+                Our Services
               </motion.h2>
               <motion.p 
                 className="text-muted-foreground text-lg"
@@ -116,43 +172,19 @@ const Index = () => {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                From cloud infrastructure to cybersecurity, we provide end-to-end 
-                solutions for modern businesses.
+                We offer a comprehensive range of digital services to help your business thrive in the digital landscape.
               </motion.p>
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[
-                { icon: Code, title: "Custom Development", desc: "Tailored software solutions built for your specific needs" },
-                { icon: Server, title: "Cloud Services", desc: "Scalable and secure cloud infrastructure solutions" },
-                { icon: Database, title: "Data Management", desc: "Efficient data storage and analytics solutions" },
-                { icon: Shield, title: "Cybersecurity", desc: "Advanced security measures to protect your assets" },
-                { icon: Cpu, title: "IT Infrastructure", desc: "Robust and scalable IT infrastructure setup" },
-                { icon: Wifi, title: "Network Solutions", desc: "Reliable networking and connectivity services" },
-                { icon: HardDrive, title: "Backup & Recovery", desc: "Secure data backup and disaster recovery" },
-                { icon: Users, title: "IT Consulting", desc: "Strategic technology consulting and planning" },
-                { icon: Clock, title: "24/7 Support", desc: "Round-the-clock technical support services" },
-              ].map((service, index) => (
-                <motion.div
+              {services.map((service, index) => (
+                <ServiceCard
                   key={service.title}
-                  className="bg-white p-8 rounded-2xl shadow-glass border border-border/50 hover:shadow-lg transition-shadow"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
-                    <service.icon size={24} />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-3">{service.title}</h3>
-                  <p className="text-muted-foreground mb-4">{service.desc}</p>
-                  <Link 
-                    to="/work" 
-                    className="inline-flex items-center text-accent hover:text-accent/80 transition-colors"
-                  >
-                    Learn more <ArrowRight size={16} className="ml-2" />
-                  </Link>
-                </motion.div>
+                  title={service.title}
+                  description={service.desc}
+                  icon={service.icon}
+                  index={index}
+                />
               ))}
             </div>
           </div>
@@ -178,7 +210,7 @@ const Index = () => {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                Let's discuss how our IT solutions can help you achieve your business goals.
+                Let's discuss how our digital solutions can help you achieve your business goals.
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

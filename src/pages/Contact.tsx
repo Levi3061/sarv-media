@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, Phone, MapPin } from 'lucide-react';
+import { Mail, Phone, Instagram, Linkedin } from 'lucide-react';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
@@ -53,9 +53,9 @@ const Contact = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
               {[
                 {
-                  icon: MapPin,
-                  title: "Visit Us",
-                  details: ["123 Tech Street, Suite 456", "San Francisco, CA 94103"]
+                  icon: Instagram,
+                  title: "Follow Us",
+                  details: ["Instagram: @techedge", "Stay updated with our latest projects"]
                 },
                 {
                   icon: Phone,

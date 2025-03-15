@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Instagram, Linkedin } from 'lucide-react';
@@ -127,7 +128,11 @@ const Contact = () => {
                           className="w-full"
                           asChild
                         >
-                          <a href={action.href}>
+                          <a 
+                            href={action.href}
+                            target={action.href.startsWith('http') ? "_blank" : undefined}
+                            rel={action.href.startsWith('http') ? "noopener noreferrer" : undefined}
+                          >
                             <action.icon className="mr-2" size={16} />
                             {action.label}
                           </a>

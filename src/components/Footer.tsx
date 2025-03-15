@@ -10,11 +10,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           <div className="md:col-span-1">
             <Link to="/" className="inline-block mb-6">
-              <span className="text-2xl font-bold tracking-tight">Sarvmedia</span>
+              <img 
+                src="/lovable-uploads/d7e6819a-2770-498e-98e0-41a27f75adea.png" 
+                alt="Sarvmedia Logo" 
+                className="h-20 w-auto" 
+              />
             </Link>
-            <p className="text-primary-foreground/80 mb-6">
-              Empowering businesses with innovative IT solutions since 2010.
-            </p>
           </div>
           
           <div>

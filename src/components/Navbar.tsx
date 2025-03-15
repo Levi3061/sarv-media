@@ -25,13 +25,17 @@ const Navbar = () => {
     <header 
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
-        isScrolled ? "backdrop-blur-md bg-white/80 shadow-sm" : "bg-transparent"
+        isScrolled ? "backdrop-blur-md bg-teal/90 shadow-sm" : "bg-teal"
       )}
     >
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between">
           <NavLink to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold tracking-tight text-gradient">Sarvmedia</span>
+            <img 
+              src="/lovable-uploads/639f9eb6-35fe-4ca9-95fa-e8a1870c7152.png" 
+              alt="Sarvmedia Logo" 
+              className="h-14 w-auto" 
+            />
           </NavLink>
 
           {/* Desktop Navigation */}
@@ -39,8 +43,8 @@ const Navbar = () => {
             <NavLink 
               to="/" 
               className={({ isActive }) => cn(
-                "text-sm font-medium hover:text-accent transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
-                isActive && "text-accent after:scale-x-100"
+                "text-sm font-medium text-white hover:text-white/80 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
+                isActive && "after:scale-x-100"
               )}
             >
               Home
@@ -48,8 +52,8 @@ const Navbar = () => {
             <NavLink 
               to="/work" 
               className={({ isActive }) => cn(
-                "text-sm font-medium hover:text-accent transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
-                isActive && "text-accent after:scale-x-100"
+                "text-sm font-medium text-white hover:text-white/80 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
+                isActive && "after:scale-x-100"
               )}
             >
               Our Work
@@ -57,15 +61,15 @@ const Navbar = () => {
             <NavLink 
               to="/about" 
               className={({ isActive }) => cn(
-                "text-sm font-medium hover:text-accent transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-accent after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
-                isActive && "text-accent after:scale-x-100"
+                "text-sm font-medium text-white hover:text-white/80 transition-colors relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:bg-white after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-300",
+                isActive && "after:scale-x-100"
               )}
             >
               About Us
             </NavLink>
             <NavLink 
               to="/contact" 
-              className="bg-accent text-accent-foreground px-5 py-2 rounded-full text-sm font-medium hover:opacity-90 transition-opacity shadow-button"
+              className="bg-white text-teal px-5 py-2 rounded-full text-sm font-medium hover:bg-white/90 transition-opacity shadow-button"
             >
               Contact Us
             </NavLink>
@@ -74,7 +78,7 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button 
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden text-foreground"
+            className="md:hidden text-white"
             aria-label="Toggle menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -84,13 +88,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 glass shadow-lg backdrop-blur-md">
+        <div className="md:hidden absolute top-full left-0 right-0 bg-teal/95 shadow-lg backdrop-blur-md">
           <nav className="flex flex-col p-6 space-y-4 animate-fade-in">
             <NavLink 
               to="/" 
               className={({ isActive }) => cn(
-                "text-lg font-medium hover:text-accent transition-colors py-1",
-                isActive && "text-accent"
+                "text-lg font-medium text-white hover:text-white/80 transition-colors py-1",
+                isActive && "text-white/80"
               )}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -99,8 +103,8 @@ const Navbar = () => {
             <NavLink 
               to="/work" 
               className={({ isActive }) => cn(
-                "text-lg font-medium hover:text-accent transition-colors py-1",
-                isActive && "text-accent"
+                "text-lg font-medium text-white hover:text-white/80 transition-colors py-1",
+                isActive && "text-white/80"
               )}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -109,8 +113,8 @@ const Navbar = () => {
             <NavLink 
               to="/about" 
               className={({ isActive }) => cn(
-                "text-lg font-medium hover:text-accent transition-colors py-1",
-                isActive && "text-accent"
+                "text-lg font-medium text-white hover:text-white/80 transition-colors py-1",
+                isActive && "text-white/80"
               )}
               onClick={() => setMobileMenuOpen(false)}
             >
@@ -118,7 +122,7 @@ const Navbar = () => {
             </NavLink>
             <NavLink 
               to="/contact" 
-              className="bg-accent text-accent-foreground rounded-full text-lg font-medium text-center py-2 hover:opacity-90 transition-opacity"
+              className="bg-white text-teal rounded-full text-lg font-medium text-center py-2 hover:opacity-90 transition-opacity"
               onClick={() => setMobileMenuOpen(false)}
             >
               Contact Us

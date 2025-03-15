@@ -16,24 +16,6 @@ const Footer = () => {
                 className="h-20 w-auto" 
               />
             </Link>
-            <div className="flex space-x-4 mt-2">
-              <a 
-                href="https://www.instagram.com/sarvmedia1/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-              >
-                <Instagram size={20} />
-              </a>
-              <a 
-                href="https://www.linkedin.com/company/sarv-media" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
-              >
-                <Linkedin size={20} />
-              </a>
-            </div>
           </div>
           
           <div>
@@ -107,6 +89,28 @@ const Footer = () => {
                 <Mail size={20} className="text-primary-foreground/70" />
                 <a href="mailto:sarvmedia1@gmail.com" className="text-primary-foreground/70 hover:text-primary-foreground transition-colors">
                   sarvmedia1@gmail.com
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Instagram size={20} className="text-primary-foreground/70" />
+                <a 
+                  href="https://www.instagram.com/sarvmedia1/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                >
+                  Instagram
+                </a>
+              </li>
+              <li className="flex items-center gap-3">
+                <Linkedin size={20} className="text-primary-foreground/70" />
+                <a 
+                  href="https://www.linkedin.com/company/sarv-media" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-primary-foreground/70 hover:text-primary-foreground transition-colors"
+                >
+                  LinkedIn
                 </a>
               </li>
             </ul>

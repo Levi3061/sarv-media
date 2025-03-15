@@ -128,7 +128,7 @@ const ContactForm = () => {
         
         <div className="space-y-2 mb-8">
           <label htmlFor="message" className="text-sm font-medium">
-            Your Message
+            Your Message (Optional)
           </label>
           <textarea
             id="message"

@@ -56,7 +56,19 @@ const Contact = () => {
                 {
                   icon: Instagram,
                   title: "Follow Us",
-                  details: ["Instagram: @techedge", "Stay updated with our latest projects"]
+                  details: ["Connect with us on social media", "Stay updated with our latest projects"],
+                  actions: [
+                    { 
+                      label: "Instagram", 
+                      href: "https://instagram.com/sarvmedia",
+                      icon: Instagram 
+                    },
+                    { 
+                      label: "LinkedIn", 
+                      href: "https://linkedin.com/company/sarvmedia",
+                      icon: Linkedin 
+                    }
+                  ]
                 },
                 {
                   icon: Phone,
@@ -65,18 +77,27 @@ const Contact = () => {
                   actions: [
                     { 
                       label: "Call First Number", 
-                      href: "tel:+12499892347" 
+                      href: "tel:+12499892347",
+                      icon: Phone
                     },
                     { 
                       label: "Call Second Number", 
-                      href: "tel:+14375996550" 
+                      href: "tel:+14375996550",
+                      icon: Phone
                     }
                   ]
                 },
                 {
                   icon: Mail,
                   title: "Email Us",
-                  details: ["info@techedge.com", "support@techedge.com"]
+                  details: ["info@sarvmedia.com", "For inquiries and support"],
+                  actions: [
+                    {
+                      label: "Send Email", 
+                      href: "mailto:info@sarvmedia.com",
+                      icon: Mail
+                    }
+                  ]
                 }
               ].map((item, index) => (
                 <motion.div
@@ -108,7 +129,7 @@ const Contact = () => {
                           asChild
                         >
                           <a href={action.href}>
-                            <Phone className="mr-2" size={16} />
+                            <action.icon className="mr-2" size={16} />
                             {action.label}
                           </a>
                         </Button>

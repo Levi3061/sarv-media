@@ -60,12 +60,12 @@ const Contact = () => {
                   actions: [
                     { 
                       label: "Instagram", 
-                      href: "https://instagram.com/sarvmedia",
+                      href: "https://www.instagram.com/sarvmedia1/",
                       icon: Instagram 
                     },
                     { 
                       label: "LinkedIn", 
-                      href: "https://linkedin.com/company/sarvmedia",
+                      href: "https://www.linkedin.com/company/sarv-media",
                       icon: Linkedin 
                     }
                   ]
@@ -90,11 +90,11 @@ const Contact = () => {
                 {
                   icon: Mail,
                   title: "Email Us",
-                  details: ["info@sarvmedia.com", "For inquiries and support"],
+                  details: ["sarvmedia1@gmail.com", "For inquiries and support"],
                   actions: [
                     {
                       label: "Send Email", 
-                      href: "mailto:info@sarvmedia.com",
+                      href: "mailto:sarvmedia1@gmail.com",
                       icon: Mail
                     }
                   ]

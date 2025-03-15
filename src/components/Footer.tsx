@@ -13,7 +13,7 @@ const Footer = () => {
               <img 
                 src="/lovable-uploads/1165a6b1-218f-45c7-a0a3-10e454991018.png" 
                 alt="Sarvmedia Logo" 
-                className="h-16 w-auto"
+                className="h-20 w-auto"
               />
             </Link>
           </div>

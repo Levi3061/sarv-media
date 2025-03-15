@@ -67,7 +67,7 @@ export default {
 					ring: 'hsl(var(--sidebar-ring))'
 				},
 				sarvteal: '#2e5966',
-				sarvgray: '#eeeeee',
+				sarvgray: '#ffffff',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',

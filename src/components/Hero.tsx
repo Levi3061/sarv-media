@@ -39,7 +39,7 @@ const Hero = () => {
             animate="visible"
           >
             <motion.span 
-              className="px-4 py-1.5 bg-sarvteal/10 text-sarvteal text-xs font-medium rounded-full mb-6 w-fit mx-auto lg:mx-0"
+              className="px-4 py-1.5 bg-accent/10 text-accent text-xs font-medium rounded-full mb-6 w-fit mx-auto lg:mx-0"
               variants={itemVariants}
             >
               Digital Solutions for Modern Businesses
@@ -67,14 +67,14 @@ const Hero = () => {
             >
               <Link 
                 to="/contact" 
-                className="bg-sarvteal hover:bg-sarvteal/90 text-white px-8 py-3 rounded-full font-medium w-full sm:w-auto text-center transition-colors flex items-center justify-center gap-2"
+                className="bg-accent hover:bg-accent/90 text-white px-8 py-3 rounded-full font-medium w-full sm:w-auto text-center transition-colors flex items-center justify-center gap-2"
               >
                 Get Started
                 <ArrowRight size={16} />
               </Link>
               <Link 
                 to="/work" 
-                className="text-foreground hover:text-sarvteal px-8 py-3 rounded-full font-medium border border-border hover:border-sarvteal w-full sm:w-auto text-center transition-colors"
+                className="text-foreground hover:text-accent px-8 py-3 rounded-full font-medium border border-border hover:border-accent w-full sm:w-auto text-center transition-colors"
               >
                 Our Services
               </Link>
@@ -98,7 +98,7 @@ const Hero = () => {
           transition={{ delay: 0.4, duration: 0.6 }}
         >
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-sarvteal/10 text-sarvteal mb-6">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
               <Smartphone size={24} />
             </div>
             <h3 className="text-xl font-semibold mb-3">App Development</h3>
@@ -108,7 +108,7 @@ const Hero = () => {
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-sarvteal/10 text-sarvteal mb-6">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
               <TrendingUp size={24} />
             </div>
             <h3 className="text-xl font-semibold mb-3">Digital Marketing</h3>
@@ -118,7 +118,7 @@ const Hero = () => {
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-sarvteal/10 text-sarvteal mb-6">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
               <PenTool size={24} />
             </div>
             <h3 className="text-xl font-semibold mb-3">UI/UX Design</h3>
@@ -128,7 +128,7 @@ const Hero = () => {
           </div>
           
           <div className="bg-white rounded-2xl p-8 shadow-glass border border-border/50 backdrop-blur-sm hover:shadow-lg transition-shadow">
-            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-sarvteal/10 text-sarvteal mb-6">
+            <div className="w-12 h-12 flex items-center justify-center rounded-full bg-accent/10 text-accent mb-6">
               <Globe size={24} />
             </div>
             <h3 className="text-xl font-semibold mb-3">Website Development</h3>

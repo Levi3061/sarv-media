@@ -24,18 +24,14 @@ const Navbar = () => {
   return (
     <header 
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-3",
+        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 py-4",
         isScrolled ? "backdrop-blur-md bg-white/80 shadow-sm" : "bg-transparent"
       )}
     >
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="flex items-center">
-            <img 
-              src="/lovable-uploads/01127312-28cb-4da2-87d7-f1df0b0b127a.png" 
-              alt="Sarvmedia Logo" 
-              className="h-16 w-auto" 
-            />
+          <NavLink to="/" className="flex items-center space-x-2">
+            <span className="text-2xl font-bold tracking-tight text-gradient">Sarvmedia</span>
           </NavLink>
 
           {/* Desktop Navigation */}

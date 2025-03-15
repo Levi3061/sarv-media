@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
@@ -31,9 +30,7 @@ const formSchema = z.object({
   service: z.string({
     required_error: "Please select a service you're interested in.",
   }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }),
+  message: z.string().optional(),
 });
 
 const services = [
@@ -76,7 +73,7 @@ const HomeContactForm = () => {
             email: values.email,
             phone: values.phone || null,
             service: values.service,
-            message: values.message
+            message: values.message || null
           }
         ]);
       

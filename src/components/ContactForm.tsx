@@ -33,7 +33,7 @@ const ContactForm = () => {
             email: formData.email,
             phone: formData.phone || null,
             service: "Not Specified", // This form doesn't have a service field
-            message: formData.message
+            message: formData.message || null
           }
         ]);
       
@@ -135,7 +135,6 @@ const ContactForm = () => {
             name="message"
             value={formData.message}
             onChange={handleChange}
-            required
             rows={5}
             className="w-full px-4 py-3 rounded-lg border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all resize-none"
             placeholder="Tell us about your project or inquiry"

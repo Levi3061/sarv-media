@@ -30,8 +30,12 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 md:px-8">
         <div className="flex items-center justify-between">
-          <NavLink to="/" className="flex items-center space-x-2">
-            <span className="text-2xl font-bold tracking-tight text-gradient">Sarvmedia</span>
+          <NavLink to="/" className="flex items-center">
+            <img 
+              src="/lovable-uploads/01127312-28cb-4da2-87d7-f1df0b0b127a.png" 
+              alt="Sarvmedia Logo" 
+              className="h-12 w-auto"
+            />
           </NavLink>
 
           {/* Desktop Navigation */}

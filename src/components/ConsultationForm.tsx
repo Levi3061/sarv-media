@@ -15,7 +15,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Calendar as CalendarComponent } from '@/components/ui/calendar';
 import { format } from 'date-fns';
@@ -38,12 +37,6 @@ const formSchema = z.object({
   }),
   project_type: z.string({
     required_error: "Please select a project type.",
-  }),
-  consultation_type: z.string({
-    required_error: "Please select how you'd like to be contacted.",
-  }),
-  budget: z.string({
-    required_error: "Please select your estimated budget.",
   }),
   preferred_date: z.date({
     required_error: "Please select a preferred date.",
@@ -76,21 +69,6 @@ const projectTypes = [
   "Other"
 ];
 
-const budgetRanges = [
-  "Under $5,000",
-  "$5,000 - $10,000",
-  "$10,000 - $25,000",
-  "$25,000 - $50,000",
-  "$50,000+"
-];
-
-const consultationTypes = [
-  "Video Call",
-  "Phone Call",
-  "In-person Meeting",
-  "Email Communication"
-];
-
 const timeSlots = [
   "9:00 AM - 10:00 AM",
   "10:00 AM - 11:00 AM",
@@ -112,8 +90,6 @@ const ConsultationForm = () => {
       phone: "",
       service: "",
       project_type: "",
-      consultation_type: "",
-      budget: "",
       message: "",
     },
   });
@@ -136,8 +112,6 @@ const ConsultationForm = () => {
             service: values.service,
             message: values.message || null,
             project_type: values.project_type,
-            consultation_type: values.consultation_type,
-            budget: values.budget,
             preferred_date: formattedDate,
             preferred_time: values.preferred_time,
           }
@@ -258,82 +232,27 @@ const ConsultationForm = () => {
               />
             </div>
             
-            {/* Project Type and Budget */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="project_type"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm">Project Type</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select project type" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {projectTypes.map((type) => (
-                          <SelectItem key={type} value={type}>
-                            {type}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              
-              <FormField
-                control={form.control}
-                name="budget"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel className="text-sm">Estimated Budget</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder="Select budget range" />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        {budgetRanges.map((budget) => (
-                          <SelectItem key={budget} value={budget}>
-                            {budget}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            
-            {/* Consultation Type */}
+            {/* Project Type */}
             <FormField
               control={form.control}
-              name="consultation_type"
+              name="project_type"
               render={({ field }) => (
-                <FormItem className="space-y-2">
-                  <FormLabel className="text-sm">How would you like to be contacted?</FormLabel>
-                  <FormControl>
-                    <RadioGroup
-                      onValueChange={field.onChange}
-                      defaultValue={field.value}
-                      className="grid grid-cols-2 gap-2"
-                    >
-                      {consultationTypes.map((type) => (
-                        <div key={type} className="flex items-center space-x-2">
-                          <RadioGroupItem value={type} id={type.replace(/\s+/g, '-').toLowerCase()} />
-                          <FormLabel htmlFor={type.replace(/\s+/g, '-').toLowerCase()} className="text-sm font-normal cursor-pointer">
-                            {type}
-                          </FormLabel>
-                        </div>
+                <FormItem>
+                  <FormLabel className="text-sm">Project Type</FormLabel>
+                  <Select onValueChange={field.onChange} defaultValue={field.value}>
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select project type" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {projectTypes.map((type) => (
+                        <SelectItem key={type} value={type}>
+                          {type}
+                        </SelectItem>
                       ))}
-                    </RadioGroup>
-                  </FormControl>
+                    </SelectContent>
+                  </Select>
                   <FormMessage />
                 </FormItem>
               )}

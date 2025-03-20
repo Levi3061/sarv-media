@@ -92,7 +92,12 @@ interface ProjectsProps {
 
 const Projects: React.FC<ProjectsProps> = ({ className }) => {
   const [projectsWithIcons, setProjectsWithIcons] = useState<Project[]>(
-    projects.map(project => ({ ...project, loading: true }))
+    projects.map(project => ({
+      ...project,
+      loading: true,
+      // Pre-set fallback images to ensure they're available immediately
+      imageSrc: fallbackIcons[project.appId]
+    }))
   );
 
   useEffect(() => {
@@ -119,17 +124,13 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
           if (data.results && data.results.length > 0 && data.results[0].artworkUrl100) {
             console.log(`Successfully fetched icon for ${project.name}`);
             updatedProjects[i].imageSrc = data.results[0].artworkUrl100;
-          } else {
-            // If iTunes API doesn't return an image, use fallback
-            console.log(`No icon found in API for ${project.name}, using fallback`);
-            updatedProjects[i].imageSrc = fallbackIcons[project.appId];
           }
+          // If iTunes API doesn't return an image, we're already using the fallback
         } catch (error) {
           console.error(`Failed to fetch icon for ${project.name}:`, error);
-          // Use fallback icon on error
-          updatedProjects[i].imageSrc = fallbackIcons[project.appId];
+          // Fallback already set, no need to do anything here
         } finally {
-          // Always mark as not loading, whether we got the icon or not
+          // Always mark as not loading
           updatedProjects[i].loading = false;
         }
       }

@@ -24,6 +24,7 @@ import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { supabase } from "@/integrations/supabase/client";
 
+// Form schema definition with validation rules
 const formSchema = z.object({
   name: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -53,6 +54,7 @@ const formSchema = z.object({
   message: z.string().optional(),
 });
 
+// Form options data
 const services = [
   "iOS App Development",
   "Android App Development",
@@ -168,28 +170,29 @@ const HomeContactForm = () => {
   }
 
   return (
-    <div className="w-full max-w-2xl mx-auto">
+    <div className="w-full max-w-2xl mx-auto px-4 py-8 md:py-12">
       <motion.div 
-        className="bg-white rounded-2xl p-8 md:p-10 shadow-glass border border-border/50"
+        className="bg-white rounded-xl p-6 md:p-8 shadow-md border border-border/50"
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
-        <h2 className="text-2xl font-bold mb-6 text-center">Book a Free Consultation</h2>
-        <p className="text-muted-foreground mb-8 text-center">
+        <h2 className="text-xl md:text-2xl font-bold mb-3 text-center">Book a Free Consultation</h2>
+        <p className="text-muted-foreground mb-6 text-center text-sm md:text-base">
           Let's discuss your project and explore how we can help bring your ideas to life.
         </p>
         
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            {/* Personal Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Full Name</FormLabel>
+                    <FormLabel className="text-sm">Full Name</FormLabel>
                     <FormControl>
                       <Input placeholder="Your name" {...field} />
                     </FormControl>
@@ -203,7 +206,7 @@ const HomeContactForm = () => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email Address</FormLabel>
+                    <FormLabel className="text-sm">Email Address</FormLabel>
                     <FormControl>
                       <Input placeholder="your.email@example.com" {...field} />
                     </FormControl>
@@ -213,13 +216,14 @@ const HomeContactForm = () => {
               />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Project Information */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone (Optional)</FormLabel>
+                    <FormLabel className="text-sm">Phone (Optional)</FormLabel>
                     <FormControl>
                       <Input placeholder="Your phone number" {...field} />
                     </FormControl>
@@ -233,7 +237,7 @@ const HomeContactForm = () => {
                 name="service"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Service Needed</FormLabel>
+                    <FormLabel className="text-sm">Service Needed</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -254,13 +258,14 @@ const HomeContactForm = () => {
               />
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Project Type and Budget */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="project_type"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Project Type</FormLabel>
+                    <FormLabel className="text-sm">Project Type</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -285,7 +290,7 @@ const HomeContactForm = () => {
                 name="budget"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Estimated Budget</FormLabel>
+                    <FormLabel className="text-sm">Estimated Budget</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -306,28 +311,27 @@ const HomeContactForm = () => {
               />
             </div>
             
+            {/* Consultation Type */}
             <FormField
               control={form.control}
               name="consultation_type"
               render={({ field }) => (
-                <FormItem className="space-y-3">
-                  <FormLabel>How would you like to be contacted?</FormLabel>
+                <FormItem className="space-y-2">
+                  <FormLabel className="text-sm">How would you like to be contacted?</FormLabel>
                   <FormControl>
                     <RadioGroup
                       onValueChange={field.onChange}
                       defaultValue={field.value}
-                      className="flex flex-col space-y-1"
+                      className="grid grid-cols-2 gap-2"
                     >
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                        {consultationTypes.map((type) => (
-                          <div key={type} className="flex items-center space-x-2">
-                            <RadioGroupItem value={type} id={type} />
-                            <FormLabel htmlFor={type} className="font-normal cursor-pointer">
-                              {type}
-                            </FormLabel>
-                          </div>
-                        ))}
-                      </div>
+                      {consultationTypes.map((type) => (
+                        <div key={type} className="flex items-center space-x-2">
+                          <RadioGroupItem value={type} id={type.replace(/\s+/g, '-').toLowerCase()} />
+                          <FormLabel htmlFor={type.replace(/\s+/g, '-').toLowerCase()} className="text-sm font-normal cursor-pointer">
+                            {type}
+                          </FormLabel>
+                        </div>
+                      ))}
                     </RadioGroup>
                   </FormControl>
                   <FormMessage />
@@ -335,19 +339,20 @@ const HomeContactForm = () => {
               )}
             />
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Date and Time Selection */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <FormField
                 control={form.control}
                 name="preferred_date"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel>Preferred Date</FormLabel>
+                    <FormLabel className="text-sm">Preferred Date</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
                         <FormControl>
                           <Button
                             variant={"outline"}
-                            className={`w-full pl-3 text-left font-normal ${!field.value && "text-muted-foreground"}`}
+                            className={`w-full pl-3 text-left font-normal text-sm ${!field.value && "text-muted-foreground"}`}
                           >
                             {field.value ? format(field.value, "PPP") : "Select a date"}
                             <Calendar className="ml-auto h-4 w-4 opacity-50" />
@@ -377,7 +382,7 @@ const HomeContactForm = () => {
                 name="preferred_time"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Preferred Time</FormLabel>
+                    <FormLabel className="text-sm">Preferred Time</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
@@ -398,17 +403,18 @@ const HomeContactForm = () => {
               />
             </div>
             
+            {/* Additional Information */}
             <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Additional Information (Optional)</FormLabel>
+                  <FormLabel className="text-sm">Additional Information (Optional)</FormLabel>
                   <FormControl>
                     <Textarea 
                       placeholder="Tell us more about your project or specific requirements" 
                       className="resize-none" 
-                      rows={3} 
+                      rows={2} 
                       {...field} 
                     />
                   </FormControl>
@@ -417,10 +423,12 @@ const HomeContactForm = () => {
               )}
             />
             
+            {/* Submit Button */}
             <Button 
               type="submit" 
               className="w-full" 
               disabled={isSubmitting}
+              size="sm"
             >
               {isSubmitting ? 'Submitting...' : 'Book Your Free Consultation'}
               <Send className="ml-2" size={16} />

@@ -74,10 +74,10 @@ const About = () => {
                 viewport={{ once: true }}
               >
                 {[
-                  { number: "500+", label: "Clients Served" },
-                  { number: "1000+", label: "Projects Completed" },
-                  { number: "50+", label: "Expert Team Members" },
-                  { number: "12+", label: "Years of Excellence" }
+                  { number: "80+", label: "Clients Served" },
+                  { number: "120+", label: "Projects Completed" },
+                  { number: "15+", label: "Expert Team Members" },
+                  { number: "6+", label: "Years of Excellence" }
                 ].map((stat) => (
                   <div key={stat.label} className="bg-white p-6 rounded-2xl shadow-glass text-center">
                     <div className="text-2xl font-bold text-accent mb-2">{stat.number}</div>
@@ -100,7 +100,7 @@ const About = () => {
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                Why Us
+                Why Choose Us
               </motion.h2>
               <motion.p 
                 className="text-muted-foreground"
@@ -109,7 +109,7 @@ const About = () => {
                 transition={{ delay: 0.1, duration: 0.5 }}
                 viewport={{ once: true }}
               >
-                What makes us different from the rest
+                Our unique approach sets us apart
               </motion.p>
             </div>
             
@@ -117,23 +117,23 @@ const About = () => {
               {[
                 {
                   icon: Blocks,
-                  title: "100% Custom Creations",
-                  description: "No copy-and-paste templates here. Your project is one-of-a-kind—just like you."
+                  title: "Tailored Solutions",
+                  description: "We create custom solutions specifically designed to meet your unique business needs and goals."
                 },
                 {
                   icon: Users,
-                  title: "We Speak Human, Not Just Tech",
-                  description: "Tired of confusing jargon? We translate code into plain English (or emojis, if that's your thing)."
+                  title: "Client-Focused Approach",
+                  description: "Your success is our priority. We work closely with you to understand your vision and deliver results."
                 },
                 {
                   icon: Target,
-                  title: "Results-Driven",
-                  description: "Likes, follows, and brand awareness are great—but real ROI is where it's at."
+                  title: "Data-Driven Strategy",
+                  description: "We base our decisions on metrics and analytics to ensure measurable outcomes for your business."
                 },
                 {
                   icon: Award,
-                  title: "Friendly & Fun",
-                  description: "We might be keyboard ninjas, but we're also people-people. Expect top-notch support and the occasional dad joke."
+                  title: "Continuous Innovation",
+                  description: "We stay ahead of industry trends and technologies to provide cutting-edge solutions."
                 }
               ].map((value, index) => (
                 <motion.div

@@ -167,10 +167,11 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
                   viewport={{ once: true }}
+                  className="h-full"
                 >
                   <Card className="border border-border/50 shadow-glass backdrop-blur-sm h-full flex flex-col">
-                    <CardContent className="p-4">
-                      <div className="flex justify-center items-center mb-4">
+                    <CardContent className="p-4 flex flex-col items-center">
+                      <div className="flex justify-center items-center mb-4 w-24 h-24">
                         {project.loading ? (
                           <div className="w-24 h-24 rounded-xl bg-secondary flex items-center justify-center">
                             <LoaderCircle className="h-8 w-8 animate-spin text-muted-foreground" />
@@ -189,7 +190,7 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                         )}
                       </div>
                       <h3 className="font-semibold text-lg mb-2 text-center">{project.name}</h3>
-                      <p className="text-muted-foreground text-sm">{project.description}</p>
+                      <p className="text-muted-foreground text-sm text-center">{project.description}</p>
                     </CardContent>
                     <CardFooter className="px-4 pb-4 pt-0 mt-auto">
                       <Button 

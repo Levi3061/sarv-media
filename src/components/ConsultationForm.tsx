@@ -352,7 +352,7 @@ const ConsultationForm = () => {
                         <FormControl>
                           <Button
                             variant={"outline"}
-                            className={`w-full pl-3 text-left font-normal text-sm ${!field.value && "text-muted-foreground"}`}
+                            className={`w-full pl-3 text-left font-normal text-sm h-10 ${!field.value && "text-muted-foreground"}`}
                           >
                             {field.value ? format(field.value, "PPP") : "Select a date"}
                             <Calendar className="ml-auto h-4 w-4 opacity-50" />
@@ -385,7 +385,7 @@ const ConsultationForm = () => {
                     <FormLabel className="text-sm">Preferred Time</FormLabel>
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
-                        <SelectTrigger>
+                        <SelectTrigger className="h-10">
                           <SelectValue placeholder="Select a time" />
                         </SelectTrigger>
                       </FormControl>

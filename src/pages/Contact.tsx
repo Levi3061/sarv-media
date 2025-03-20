@@ -2,11 +2,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, Instagram, Linkedin } from 'lucide-react';
-import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PageTransition from '@/layout/PageTransition';
 import { Button } from '@/components/ui/button';
+import ConsultationForm from '@/components/ConsultationForm';
 
 const Contact = () => {
   return (
@@ -24,7 +24,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                Get in Touch
+                Book A Free Consultation
               </motion.span>
               
               <motion.h1 
@@ -42,7 +42,7 @@ const Contact = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                Have a project in mind? Let's discuss how we can help you achieve your goals.
+                Have a project in mind? Book a free consultation and let's discuss how we can help bring your ideas to life.
               </motion.p>
             </div>
           </div>
@@ -144,7 +144,7 @@ const Contact = () => {
               ))}
             </div>
 
-            <ContactForm />
+            <ConsultationForm />
           </div>
         </section>
       </main>

@@ -1,6 +1,7 @@
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink } from 'lucide-react';
+import { ExternalLink, LoaderCircle } from 'lucide-react';
 import {
   Carousel,
   CarouselContent,
@@ -10,12 +11,15 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 interface Project {
   name: string;
   description: string;
   appStoreUrl: string;
-  imageSrc: string;
+  appId: string;
+  imageSrc?: string;
+  loading?: boolean;
 }
 
 const projects: Project[] = [
@@ -23,49 +27,49 @@ const projects: Project[] = [
     name: "Sociallize App",
     description: "A social networking platform connecting people with similar interests.",
     appStoreUrl: "https://apps.apple.com/in/app/sociallize-app/id1639776145",
-    imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1639776145"
   },
   {
     name: "Outgoer",
     description: "An app for discovering local events and activities.",
     appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
-    imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1542737827"
   },
   {
     name: "Turbo",
     description: "A performance optimization tool for mobile devices.",
     appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
-    imageSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1542737827"
   },
   {
     name: "Habit Tracker & Planner",
     description: "An app for tracking and building daily habits and routines.",
     appStoreUrl: "https://apps.apple.com/in/app/habit-tracker-planner/id6478919458",
-    imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "6478919458"
   },
   {
     name: "Duuliye",
     description: "A specialized app for community engagement and organization.",
     appStoreUrl: "https://apps.apple.com/in/app/duuliye/id1639880516",
-    imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1639880516"
   },
   {
     name: "MODV AI",
     description: "An AI-powered app for visual content creation and editing.",
     appStoreUrl: "https://apps.apple.com/us/app/modv-ai/id6444100286",
-    imageSrc: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "6444100286"
   },
   {
     name: "Max Deal",
     description: "A shopping app with exclusive deals and discounts.",
     appStoreUrl: "https://apps.apple.com/us/app/max-deals/id1621536309",
-    imageSrc: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1621536309"
   },
   {
     name: "قرعة",
     description: "An Arabic app for lottery and random selection.",
     appStoreUrl: "https://apps.apple.com/us/app/%D9%82%D8%B1%D8%B9%D8%A9/id1344777233",
-    imageSrc: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+    appId: "1344777233"
   }
 ];
 
@@ -74,6 +78,39 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ className }) => {
+  const [projectsWithIcons, setProjectsWithIcons] = useState<Project[]>(
+    projects.map(project => ({ ...project, loading: true }))
+  );
+
+  useEffect(() => {
+    const fetchAppIcons = async () => {
+      const updatedProjects = [...projectsWithIcons];
+      
+      for (let i = 0; i < updatedProjects.length; i++) {
+        try {
+          const response = await fetch(
+            `https://itunes.apple.com/lookup?id=${updatedProjects[i].appId}`
+          );
+          const data = await response.json();
+          
+          if (data.results && data.results.length > 0) {
+            // Get the highest resolution icon (100x100)
+            updatedProjects[i].imageSrc = data.results[0].artworkUrl100;
+            // Remove the loading state
+            updatedProjects[i].loading = false;
+          }
+        } catch (error) {
+          console.error(`Failed to fetch icon for ${updatedProjects[i].name}:`, error);
+          updatedProjects[i].loading = false;
+        }
+      }
+      
+      setProjectsWithIcons(updatedProjects);
+    };
+
+    fetchAppIcons();
+  }, []);
+
   return (
     <section className={`py-16 ${className}`}>
       <div className="container mx-auto px-6 md:px-8">
@@ -123,7 +160,7 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
           className="w-full"
         >
           <CarouselContent className="-ml-2 md:-ml-4">
-            {projects.map((project, index) => (
+            {projectsWithIcons.map((project, index) => (
               <CarouselItem key={index} className="pl-2 md:pl-4 sm:basis-1/2 md:basis-1/3 lg:basis-1/4">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -133,14 +170,25 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                 >
                   <Card className="border border-border/50 shadow-glass backdrop-blur-sm h-full flex flex-col">
                     <CardContent className="p-4">
-                      <div className="aspect-video bg-secondary mb-4 rounded-md overflow-hidden">
-                        <img 
-                          src={project.imageSrc} 
-                          alt={project.name}
-                          className="w-full h-full object-cover"
-                        />
+                      <div className="flex justify-center items-center mb-4">
+                        {project.loading ? (
+                          <div className="w-24 h-24 rounded-xl bg-secondary flex items-center justify-center">
+                            <LoaderCircle className="h-8 w-8 animate-spin text-muted-foreground" />
+                          </div>
+                        ) : project.imageSrc ? (
+                          <Avatar className="w-24 h-24 rounded-xl overflow-hidden">
+                            <AvatarImage src={project.imageSrc} alt={project.name} className="object-cover" />
+                            <AvatarFallback className="text-xl bg-secondary">
+                              {project.name.substring(0, 2)}
+                            </AvatarFallback>
+                          </Avatar>
+                        ) : (
+                          <div className="w-24 h-24 rounded-xl bg-secondary flex items-center justify-center text-xl">
+                            {project.name.substring(0, 2)}
+                          </div>
+                        )}
                       </div>
-                      <h3 className="font-semibold text-lg mb-2">{project.name}</h3>
+                      <h3 className="font-semibold text-lg mb-2 text-center">{project.name}</h3>
                       <p className="text-muted-foreground text-sm">{project.description}</p>
                     </CardContent>
                     <CardFooter className="px-4 pb-4 pt-0 mt-auto">

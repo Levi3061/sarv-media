@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, Calendar } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import { 
   Form,
@@ -14,6 +15,10 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Calendar as CalendarComponent } from '@/components/ui/calendar';
+import { format } from 'date-fns';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
@@ -29,6 +34,21 @@ const formSchema = z.object({
   phone: z.string().optional(),
   service: z.string({
     required_error: "Please select a service you're interested in.",
+  }),
+  project_type: z.string({
+    required_error: "Please select a project type.",
+  }),
+  consultation_type: z.string({
+    required_error: "Please select how you'd like to be contacted.",
+  }),
+  budget: z.string({
+    required_error: "Please select your estimated budget.",
+  }),
+  preferred_date: z.date({
+    required_error: "Please select a preferred date.",
+  }),
+  preferred_time: z.string({
+    required_error: "Please select a preferred time.",
   }),
   message: z.string().optional(),
 });
@@ -46,6 +66,39 @@ const services = [
   "Other Services",
 ];
 
+const projectTypes = [
+  "New Project",
+  "Existing Project Improvement",
+  "Maintenance",
+  "Consultation Only",
+  "Other"
+];
+
+const budgetRanges = [
+  "Under $5,000",
+  "$5,000 - $10,000",
+  "$10,000 - $25,000",
+  "$25,000 - $50,000",
+  "$50,000+"
+];
+
+const consultationTypes = [
+  "Video Call",
+  "Phone Call",
+  "In-person Meeting",
+  "Email Communication"
+];
+
+const timeSlots = [
+  "9:00 AM - 10:00 AM",
+  "10:00 AM - 11:00 AM",
+  "11:00 AM - 12:00 PM",
+  "1:00 PM - 2:00 PM",
+  "2:00 PM - 3:00 PM",
+  "3:00 PM - 4:00 PM",
+  "4:00 PM - 5:00 PM",
+];
+
 const HomeContactForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -56,6 +109,9 @@ const HomeContactForm = () => {
       email: "",
       phone: "",
       service: "",
+      project_type: "",
+      consultation_type: "",
+      budget: "",
       message: "",
     },
   });
@@ -64,6 +120,9 @@ const HomeContactForm = () => {
     setIsSubmitting(true);
     
     try {
+      // Format date for database storage
+      const formattedDate = format(values.preferred_date, 'yyyy-MM-dd');
+      
       // Submit form data to Supabase
       const { error } = await supabase
         .from('contact_submissions')
@@ -73,7 +132,12 @@ const HomeContactForm = () => {
             email: values.email,
             phone: values.phone || null,
             service: values.service,
-            message: values.message || null
+            message: values.message || null,
+            project_type: values.project_type,
+            consultation_type: values.consultation_type,
+            budget: values.budget,
+            preferred_date: formattedDate,
+            preferred_time: values.preferred_time,
           }
         ]);
       
@@ -81,13 +145,13 @@ const HomeContactForm = () => {
         console.error('Error submitting form:', error);
         toast({
           title: "Something went wrong",
-          description: "Your message could not be sent. Please try again.",
+          description: "Your consultation request could not be sent. Please try again.",
           variant: "destructive",
         });
       } else {
         toast({
-          title: "Message sent successfully!",
-          description: "We'll get back to you as soon as possible.",
+          title: "Consultation requested successfully!",
+          description: "We'll get back to you to confirm your consultation time.",
         });
         form.reset();
       }
@@ -95,7 +159,7 @@ const HomeContactForm = () => {
       console.error('Exception:', err);
       toast({
         title: "Something went wrong",
-        description: "Your message could not be sent. Please try again.",
+        description: "Your consultation request could not be sent. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -112,6 +176,11 @@ const HomeContactForm = () => {
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
       >
+        <h2 className="text-2xl font-bold mb-6 text-center">Book a Free Consultation</h2>
+        <p className="text-muted-foreground mb-8 text-center">
+          Let's discuss your project and explore how we can help bring your ideas to life.
+        </p>
+        
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -185,17 +254,161 @@ const HomeContactForm = () => {
               />
             </div>
             
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="project_type"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Project Type</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select project type" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {projectTypes.map((type) => (
+                          <SelectItem key={type} value={type}>
+                            {type}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="budget"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Estimated Budget</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select budget range" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {budgetRanges.map((budget) => (
+                          <SelectItem key={budget} value={budget}>
+                            {budget}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
+            <FormField
+              control={form.control}
+              name="consultation_type"
+              render={({ field }) => (
+                <FormItem className="space-y-3">
+                  <FormLabel>How would you like to be contacted?</FormLabel>
+                  <FormControl>
+                    <RadioGroup
+                      onValueChange={field.onChange}
+                      defaultValue={field.value}
+                      className="flex flex-col space-y-1"
+                    >
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {consultationTypes.map((type) => (
+                          <div key={type} className="flex items-center space-x-2">
+                            <RadioGroupItem value={type} id={type} />
+                            <FormLabel htmlFor={type} className="font-normal cursor-pointer">
+                              {type}
+                            </FormLabel>
+                          </div>
+                        ))}
+                      </div>
+                    </RadioGroup>
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <FormField
+                control={form.control}
+                name="preferred_date"
+                render={({ field }) => (
+                  <FormItem className="flex flex-col">
+                    <FormLabel>Preferred Date</FormLabel>
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <FormControl>
+                          <Button
+                            variant={"outline"}
+                            className={`w-full pl-3 text-left font-normal ${!field.value && "text-muted-foreground"}`}
+                          >
+                            {field.value ? format(field.value, "PPP") : "Select a date"}
+                            <Calendar className="ml-auto h-4 w-4 opacity-50" />
+                          </Button>
+                        </FormControl>
+                      </PopoverTrigger>
+                      <PopoverContent className="w-auto p-0" align="start">
+                        <CalendarComponent
+                          mode="single"
+                          selected={field.value}
+                          onSelect={field.onChange}
+                          disabled={(date) => 
+                            date < new Date(new Date().setHours(0, 0, 0, 0)) ||
+                            date > new Date(new Date().setMonth(new Date().getMonth() + 3))
+                          }
+                          initialFocus
+                        />
+                      </PopoverContent>
+                    </Popover>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              
+              <FormField
+                control={form.control}
+                name="preferred_time"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Preferred Time</FormLabel>
+                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                      <FormControl>
+                        <SelectTrigger>
+                          <SelectValue placeholder="Select a time" />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent>
+                        {timeSlots.map((time) => (
+                          <SelectItem key={time} value={time}>
+                            {time}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            
             <FormField
               control={form.control}
               name="message"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Your Message</FormLabel>
+                  <FormLabel>Additional Information (Optional)</FormLabel>
                   <FormControl>
                     <Textarea 
-                      placeholder="Tell us about your project or inquiry" 
+                      placeholder="Tell us more about your project or specific requirements" 
                       className="resize-none" 
-                      rows={5} 
+                      rows={3} 
                       {...field} 
                     />
                   </FormControl>
@@ -209,7 +422,7 @@ const HomeContactForm = () => {
               className="w-full" 
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {isSubmitting ? 'Submitting...' : 'Book Your Free Consultation'}
               <Send className="ml-2" size={16} />
             </Button>
           </form>

@@ -11,30 +11,45 @@ export type Database = {
     Tables: {
       contact_submissions: {
         Row: {
+          budget: string | null
+          consultation_type: string | null
           created_at: string
           email: string
           id: string
           message: string | null
           name: string
           phone: string | null
+          preferred_date: string | null
+          preferred_time: string | null
+          project_type: string | null
           service: string | null
         }
         Insert: {
+          budget?: string | null
+          consultation_type?: string | null
           created_at?: string
           email: string
           id?: string
           message?: string | null
           name: string
           phone?: string | null
+          preferred_date?: string | null
+          preferred_time?: string | null
+          project_type?: string | null
           service?: string | null
         }
         Update: {
+          budget?: string | null
+          consultation_type?: string | null
           created_at?: string
           email?: string
           id?: string
           message?: string | null
           name?: string
           phone?: string | null
+          preferred_date?: string | null
+          preferred_time?: string | null
+          project_type?: string | null
           service?: string | null
         }
         Relationships: []

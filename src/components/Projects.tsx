@@ -37,9 +37,9 @@ const projects: Project[] = [
   },
   {
     name: "Turbo",
-    description: "A performance optimization tool for mobile devices.",
-    appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
-    appId: "1542737827"
+    description: "A ride-hailing and transportation service app.",
+    appStoreUrl: "https://apps.apple.com/us/app/%D8%AA%D9%88%D8%B1%D8%A8%D9%88-turbo-request-a-ride/id1453533306",
+    appId: "1453533306"
   },
   {
     name: "Habit Tracker & Planner",

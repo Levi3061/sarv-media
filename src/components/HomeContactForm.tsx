@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { Send } from 'lucide-react';
 import { toast } from '@/components/ui/use-toast';
 import { supabase } from "@/integrations/supabase/client";
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 const HomeContactForm = () => {
   const [formData, setFormData] = useState({
@@ -85,59 +87,48 @@ const HomeContactForm = () => {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <label htmlFor="name" className="text-sm font-medium">
-                Full Name
-              </label>
-              <input
-                id="name"
+              <Label htmlFor="home-name">Full Name</Label>
+              <Input
+                id="home-name"
                 name="name"
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 rounded-lg border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm"
                 placeholder="Your name"
               />
             </div>
             
             <div className="space-y-2">
-              <label htmlFor="email" className="text-sm font-medium">
-                Email Address
-              </label>
-              <input
-                id="email"
+              <Label htmlFor="home-email">Email Address</Label>
+              <Input
+                id="home-email"
                 name="email"
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
-                className="w-full px-3 py-2 rounded-lg border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm"
                 placeholder="your.email@example.com"
               />
             </div>
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="phone" className="text-sm font-medium">
-              Phone (Optional)
-            </label>
-            <input
-              id="phone"
+            <Label htmlFor="home-phone">Phone (Optional)</Label>
+            <Input
+              id="home-phone"
               name="phone"
               type="tel"
               value={formData.phone}
               onChange={handleChange}
-              className="w-full px-3 py-2 rounded-lg border border-border focus:border-accent focus:ring-1 focus:ring-accent outline-none transition-all text-sm"
               placeholder="Your phone number"
             />
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="message" className="text-sm font-medium">
-              Message (Optional)
-            </label>
+            <Label htmlFor="home-message">Message (Optional)</Label>
             <textarea
-              id="message"
+              id="home-message"
               name="message"
               value={formData.message}
               onChange={handleChange}

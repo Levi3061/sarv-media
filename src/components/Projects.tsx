@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
@@ -24,49 +23,49 @@ const projects: Project[] = [
     name: "Sociallize App",
     description: "A social networking platform connecting people with similar interests.",
     appStoreUrl: "https://apps.apple.com/in/app/sociallize-app/id1639776145",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Outgoer",
     description: "An app for discovering local events and activities.",
     appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Turbo",
     description: "A performance optimization tool for mobile devices.",
     appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1487058792275-0ad4aaf24ca7?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Habit Tracker & Planner",
     description: "An app for tracking and building daily habits and routines.",
     appStoreUrl: "https://apps.apple.com/in/app/habit-tracker-planner/id6478919458",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Duuliye",
     description: "A specialized app for community engagement and organization.",
     appStoreUrl: "https://apps.apple.com/in/app/duuliye/id1639880516",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "MODV AI",
     description: "An AI-powered app for visual content creation and editing.",
     appStoreUrl: "https://apps.apple.com/us/app/modv-ai/id6444100286",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Max Deal",
     description: "A shopping app with exclusive deals and discounts.",
     appStoreUrl: "https://apps.apple.com/us/app/max-deals/id1621536309",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "قرعة",
     description: "An Arabic app for lottery and random selection.",
     appStoreUrl: "https://apps.apple.com/us/app/%D9%82%D8%B1%D8%B9%D8%A9/id1344777233",
-    imageSrc: "/placeholder.svg"
+    imageSrc: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
   }
 ];
 

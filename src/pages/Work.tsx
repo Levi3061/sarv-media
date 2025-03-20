@@ -3,6 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Smartphone, AppWindow, TrendingUp, Search, Mail, Palette, LayoutTemplate, PenTool, Globe, Terminal, Code, AtSign, Image } from 'lucide-react';
 import ServiceCard from '@/components/ServiceCard';
+import Projects from '@/components/Projects';
 import Footer from '@/components/Footer';
 import Navbar from '@/components/Navbar';
 import PageTransition from '@/layout/PageTransition';
@@ -122,6 +123,9 @@ const Work = () => {
             </div>
           </div>
         </section>
+
+        {/* Projects Section */}
+        <Projects />
 
         {/* Services Grid */}
         <section className="py-20 bg-secondary">

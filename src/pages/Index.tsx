@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import Hero from '@/components/Hero';
+import Projects from '@/components/Projects';
 import { ArrowRight, Users, Clock, Award, Smartphone, Globe, PenTool, TrendingUp, Code, Search, Mail, AtSign, Image, Palette, AppWindow, Terminal, LayoutTemplate } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Footer from '@/components/Footer';
@@ -189,6 +189,9 @@ const Index = () => {
             </div>
           </div>
         </section>
+        
+        {/* Projects Section */}
+        <Projects className="bg-secondary" />
         
         {/* CTA Section */}
         <section className="py-24 bg-primary text-primary-foreground">

@@ -12,6 +12,7 @@ import {
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Skeleton } from "@/components/ui/skeleton";
 
 interface Project {
   name: string;
@@ -73,6 +74,18 @@ const projects: Project[] = [
   }
 ];
 
+// Backup default icons in case API fails
+const fallbackIcons: Record<string, string> = {
+  "1639776145": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/91/2d/8a/912d8a2f-c8dd-47e0-c34c-22350741e2a7/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "1542737827": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/ed/07/50/ed07506f-243a-6e27-1e59-c8f76150943d/AppIcon-1x_U007emarketing-0-6-0-0-85-220.png/100x100bb.jpg",
+  "1453533306": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/d2/e1/67/d2e1673e-4c96-fd04-adef-d6b64825e927/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "6478919458": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/50/15/38/501538fc-dc19-80bf-c75f-9d6e7c0c3e69/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "1639880516": "https://is1-ssl.mzstatic.com/image/thumb/Purple112/v4/13/ea/ce/13eace25-8f6f-5f9d-09de-04eecae87f71/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "6444100286": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/c7/8a/76/c78a76e0-d1dd-37e2-c1b1-9abab5642a92/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "1621536309": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/c3/c3/6c/c3c36c37-5d20-b073-9e95-4fe3e5a4b8c1/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
+  "1344777233": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/3c/f6/9b/3cf69b53-2516-3a6f-d5ca-4aee5e71a67a/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg"
+};
+
 interface ProjectsProps {
   className?: string;
 }
@@ -87,20 +100,36 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
       const updatedProjects = [...projectsWithIcons];
       
       for (let i = 0; i < updatedProjects.length; i++) {
+        const project = updatedProjects[i];
         try {
+          console.log(`Fetching icon for ${project.name} with ID: ${project.appId}`);
+          
+          // First try to get from the iTunes API
           const response = await fetch(
-            `https://itunes.apple.com/lookup?id=${updatedProjects[i].appId}`
+            `https://itunes.apple.com/lookup?id=${project.appId}`,
+            { mode: 'cors' }
           );
+          
+          if (!response.ok) {
+            throw new Error(`API response not OK: ${response.status}`);
+          }
+          
           const data = await response.json();
           
-          if (data.results && data.results.length > 0) {
-            // Get the highest resolution icon (100x100)
+          if (data.results && data.results.length > 0 && data.results[0].artworkUrl100) {
+            console.log(`Successfully fetched icon for ${project.name}`);
             updatedProjects[i].imageSrc = data.results[0].artworkUrl100;
-            // Remove the loading state
-            updatedProjects[i].loading = false;
+          } else {
+            // If iTunes API doesn't return an image, use fallback
+            console.log(`No icon found in API for ${project.name}, using fallback`);
+            updatedProjects[i].imageSrc = fallbackIcons[project.appId];
           }
         } catch (error) {
-          console.error(`Failed to fetch icon for ${updatedProjects[i].name}:`, error);
+          console.error(`Failed to fetch icon for ${project.name}:`, error);
+          // Use fallback icon on error
+          updatedProjects[i].imageSrc = fallbackIcons[project.appId];
+        } finally {
+          // Always mark as not loading, whether we got the icon or not
           updatedProjects[i].loading = false;
         }
       }
@@ -178,7 +207,17 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                           </div>
                         ) : project.imageSrc ? (
                           <Avatar className="w-24 h-24 rounded-xl overflow-hidden">
-                            <AvatarImage src={project.imageSrc} alt={project.name} className="object-cover" />
+                            <AvatarImage 
+                              src={project.imageSrc} 
+                              alt={project.name} 
+                              className="object-cover"
+                              onError={(e) => {
+                                // If image fails to load, use fallback
+                                const target = e.target as HTMLImageElement;
+                                target.onerror = null; // Prevent infinite loop
+                                target.src = fallbackIcons[project.appId] || '';
+                              }}
+                            />
                             <AvatarFallback className="text-xl bg-secondary">
                               {project.name.substring(0, 2)}
                             </AvatarFallback>

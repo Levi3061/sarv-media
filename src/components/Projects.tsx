@@ -74,7 +74,7 @@ const projects: Project[] = [
   }
 ];
 
-// Backup default icons in case API fails
+// Hardcoded image URLs for fallback
 const fallbackIcons: Record<string, string> = {
   "1639776145": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/91/2d/8a/912d8a2f-c8dd-47e0-c34c-22350741e2a7/AppIcon-0-0-1x_U007emarketing-0-0-0-10-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/100x100bb.jpg",
   "1542737827": "https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/ed/07/50/ed07506f-243a-6e27-1e59-c8f76150943d/AppIcon-1x_U007emarketing-0-6-0-0-85-220.png/100x100bb.jpg",
@@ -91,53 +91,85 @@ interface ProjectsProps {
 }
 
 const Projects: React.FC<ProjectsProps> = ({ className }) => {
-  const [projectsWithIcons, setProjectsWithIcons] = useState<Project[]>(
+  // Initialize with fallback images directly
+  const [projectsWithIcons, setProjectsWithIcons] = useState<Project[]>(() => 
     projects.map(project => ({
       ...project,
-      loading: true,
-      // Pre-set fallback images to ensure they're available immediately
-      imageSrc: fallbackIcons[project.appId]
+      loading: false, // Start with loading false since we have fallbacks
+      imageSrc: fallbackIcons[project.appId] // Directly use fallback
     }))
   );
 
   useEffect(() => {
     const fetchAppIcons = async () => {
-      const updatedProjects = [...projectsWithIcons];
-      
-      for (let i = 0; i < updatedProjects.length; i++) {
-        const project = updatedProjects[i];
-        try {
-          console.log(`Fetching icon for ${project.name} with ID: ${project.appId}`);
-          
-          // First try to get from the iTunes API
-          const response = await fetch(
-            `https://itunes.apple.com/lookup?id=${project.appId}`,
-            { mode: 'cors' }
-          );
-          
-          if (!response.ok) {
-            throw new Error(`API response not OK: ${response.status}`);
+      try {
+        // Fetch all in parallel but don't wait for results
+        projects.forEach(async (project, index) => {
+          try {
+            console.log(`Fetching icon for ${project.name} with ID: ${project.appId}`);
+            
+            // Only update loading state for this specific item
+            setProjectsWithIcons(prev => {
+              const updated = [...prev];
+              updated[index] = {...updated[index], loading: true};
+              return updated;
+            });
+            
+            // Try fetching from iTunes API
+            const response = await fetch(
+              `https://itunes.apple.com/lookup?id=${project.appId}`,
+              { mode: 'cors' }
+            );
+            
+            if (!response.ok) {
+              throw new Error(`API response not OK: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            
+            if (data.results && data.results.length > 0 && data.results[0].artworkUrl100) {
+              console.log(`Successfully fetched icon for ${project.name}`);
+              
+              // Only update this specific item
+              setProjectsWithIcons(prev => {
+                const updated = [...prev];
+                updated[index] = {
+                  ...updated[index], 
+                  imageSrc: data.results[0].artworkUrl100,
+                  loading: false
+                };
+                return updated;
+              });
+            } else {
+              // API didn't return an image, ensure fallback is used
+              setProjectsWithIcons(prev => {
+                const updated = [...prev];
+                updated[index] = {
+                  ...updated[index], 
+                  loading: false
+                };
+                return updated;
+              });
+            }
+          } catch (error) {
+            console.error(`Failed to fetch icon for ${project.name}:`, error);
+            // Ensure loading is set to false and fallback is used
+            setProjectsWithIcons(prev => {
+              const updated = [...prev];
+              updated[index] = {
+                ...updated[index], 
+                loading: false
+              };
+              return updated;
+            });
           }
-          
-          const data = await response.json();
-          
-          if (data.results && data.results.length > 0 && data.results[0].artworkUrl100) {
-            console.log(`Successfully fetched icon for ${project.name}`);
-            updatedProjects[i].imageSrc = data.results[0].artworkUrl100;
-          }
-          // If iTunes API doesn't return an image, we're already using the fallback
-        } catch (error) {
-          console.error(`Failed to fetch icon for ${project.name}:`, error);
-          // Fallback already set, no need to do anything here
-        } finally {
-          // Always mark as not loading
-          updatedProjects[i].loading = false;
-        }
+        });
+      } catch (error) {
+        console.error("Error in fetchAppIcons:", error);
       }
-      
-      setProjectsWithIcons(updatedProjects);
     };
 
+    // Call the fetch function
     fetchAppIcons();
   }, []);
 
@@ -206,7 +238,7 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                           <div className="w-24 h-24 rounded-xl bg-secondary flex items-center justify-center">
                             <LoaderCircle className="h-8 w-8 animate-spin text-muted-foreground" />
                           </div>
-                        ) : project.imageSrc ? (
+                        ) : (
                           <Avatar className="w-24 h-24 rounded-xl overflow-hidden">
                             <AvatarImage 
                               src={project.imageSrc} 
@@ -214,6 +246,7 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                               className="object-cover"
                               onError={(e) => {
                                 // If image fails to load, use fallback
+                                console.log(`Image error for ${project.name}, using fallback`);
                                 const target = e.target as HTMLImageElement;
                                 target.onerror = null; // Prevent infinite loop
                                 target.src = fallbackIcons[project.appId] || '';
@@ -223,10 +256,6 @@ const Projects: React.FC<ProjectsProps> = ({ className }) => {
                               {project.name.substring(0, 2)}
                             </AvatarFallback>
                           </Avatar>
-                        ) : (
-                          <div className="w-24 h-24 rounded-xl bg-secondary flex items-center justify-center text-xl">
-                            {project.name.substring(0, 2)}
-                          </div>
                         )}
                       </div>
                       <h3 className="font-semibold text-lg mb-2 text-center">{project.name}</h3>

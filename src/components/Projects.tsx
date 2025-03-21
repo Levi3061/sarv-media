@@ -34,7 +34,7 @@ const projects: Project[] = [
     description: "An app for discovering local events and activities.",
     appStoreUrl: "https://apps.apple.com/in/app/outgoer/id1542737827",
     appId: "1542737827",
-    imageSrc: "/lovable-uploads/96095c39-57a4-4d1e-a5fa-f3922286bad3.png" // Habit Tracker image
+    imageSrc: "/lovable-uploads/888a83f9-4dbe-4c9f-8845-dda00f0724e0.png" // Updated Outgoer image
   },
   {
     name: "Turbo",

@@ -69,7 +69,7 @@ const projects: Project[] = [
     description: "A shopping app with exclusive deals and discounts.",
     appStoreUrl: "https://apps.apple.com/us/app/max-deals/id1621536309",
     appId: "1621536309",
-    imageSrc: "/lovable-uploads/fc6144d1-22be-48bc-814e-e8ff3df95dc3.png" // Max Deal image
+    imageSrc: "/lovable-uploads/f9e5e0d9-6876-4068-9823-8cb9f41ef2af.png" // Updated Max Deal image
   },
   {
     name: "قرعة",

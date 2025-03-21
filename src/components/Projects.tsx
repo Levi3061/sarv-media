@@ -62,7 +62,7 @@ const projects: Project[] = [
     description: "An AI-powered app for visual content creation and editing.",
     appStoreUrl: "https://apps.apple.com/us/app/modv-ai/id6444100286",
     appId: "6444100286",
-    imageSrc: "/lovable-uploads/d7e7b417-9c25-4328-9723-d7f79a6ca8ff.png" // MODV AI image
+    imageSrc: "/lovable-uploads/43fd18ad-029b-4be9-87df-5a57c5e35592.png" // Updated MODV AI image
   },
   {
     name: "Max Deal",

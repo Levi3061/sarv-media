@@ -55,7 +55,7 @@ const projects: Project[] = [
     description: "A specialized app for community engagement and organization.",
     appStoreUrl: "https://apps.apple.com/in/app/duuliye/id1639880516",
     appId: "1639880516",
-    imageSrc: "/lovable-uploads/2065dd3b-0aff-4920-9b35-4f98c95fee2e.png" // Duuliye image
+    imageSrc: "/lovable-uploads/32e5c702-9b05-4e4f-bd19-59bb7d139dd4.png" // Updated Duuliye image
   },
   {
     name: "MODV AI",

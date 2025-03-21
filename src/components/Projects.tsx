@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
@@ -47,7 +48,7 @@ const projects: Project[] = [
     description: "An app for tracking and building daily habits and routines.",
     appStoreUrl: "https://apps.apple.com/in/app/habit-tracker-planner/id6478919458",
     appId: "6478919458",
-    imageSrc: "/lovable-uploads/96095c39-57a4-4d1e-a5fa-f3922286bad3.png" // Habit Tracker image
+    imageSrc: "/lovable-uploads/6dbda268-1c49-4554-bac2-d5fc77c9617f.png" // Updated Habit Tracker image
   },
   {
     name: "Duuliye",

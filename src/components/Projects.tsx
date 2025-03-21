@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink } from 'lucide-react';
@@ -27,7 +26,7 @@ const projects: Project[] = [
     description: "A social networking platform connecting people with similar interests.",
     appStoreUrl: "https://apps.apple.com/in/app/sociallize-app/id1639776145",
     appId: "1639776145",
-    imageSrc: "/lovable-uploads/2065dd3b-0aff-4920-9b35-4f98c95fee2e.png" // Duuliye image
+    imageSrc: "/lovable-uploads/f1ea51ee-c4d1-4426-93c7-a1cbb03f6af2.png" // Updated Sociallize image
   },
   {
     name: "Outgoer",
